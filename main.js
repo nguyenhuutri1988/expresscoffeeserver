@@ -79,7 +79,7 @@ app.post('/user/', function (req, res) {
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
 
-    pool.query('INSERT INTO user VALUES ($1, $2, $3, $4)', postData, function (error, results, fields) {
+    pool.query('INSERT INTO nguoidung VALUES ($1, $2, $3, $4)', postData, function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results.rows));
     });
@@ -93,7 +93,7 @@ app.get('/getalluser/', function (req, res) {
     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
     res.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept,content-type,application/json");
     console.log(req);
-    pool.query('select phone, role, name from user', function (error, results, fields) {
+    pool.query('select dienthoai, hoten, quyenhan from nguoidung', function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results.rows));
     });
