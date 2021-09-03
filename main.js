@@ -150,11 +150,27 @@ app.post('/getorder/', function (req, res) {
     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
     res.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept,content-type,application/json");
     console.log(req);
-    pool.query('select madonhang, tennguoigui, diachinguoigui, sdtnguoigui, fbnguoigui, tennguoinhan, sdtnguoinhan, diachinguoinhan, phuongthucthanhtoan, thuho, tennhanvien, trongluong, giatien, phuthu, tongtien, dathanhtoan, ngaythang, lichsudonhang, hinhthucvanchuyen from donhang where madonhang = $1', postData, function (error, results, fields) {
+    pool.query('select madonhang, tennguoigui, diachinguoigui, sdtnguoigui, fbnguoigui, tennguoinhan, sdtnguoinhan, diachinguoinhan, phuongthucthanhtoan, thuho, tennhanvien, trongluong, giatien, phuthu, tongtien, dathanhtoan, ngaythang, ghichu, lichsudonhang, hinhthucvanchuyen from donhang where madonhang = $1', postData, function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results.rows));
     });
 });
+
+
+
+ app.put('/updatedonhang/', function (req, res) {
+     var postData = req.body;
+     res.header("Access-Control-Allow-Origin", "*");
+     res.header("Access-Control-Allow-Credentials", true);
+     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+
+     pool.query('UPDATE donhang SET madonhang =($1), tennguoigui =($2), diachinguoigui = ($3), sdtnguoigui = ($4), fbnguoigui = ($5), tennguoinhan = ($6), sdtnguoinhan = ($7), diachinguoinhan = ($8), phuongthucthanhtoan = ($9), thuho = ($10), tennhanvien = ($11), trongluong = ($12), giatien = ($13), phuthu = ($14), tongtien = ($15), dathanhtoan =($16), ngaythang = ($17), lichsudonhang = ($18), ghichu = ($19),khachhangnhapthongtin = ($20), giamgia = ($21),hinhthucvanchuyen = ($22),  where madonhang=($22)', postData, function (error, results, fields) {
+         if (error) throw error;
+         res.end(JSON.stringify(results.rows));
+     });
+ });
+
 
  app.put('/updatesodienthoai/', function (req, res) {
      var postData = req.body;
