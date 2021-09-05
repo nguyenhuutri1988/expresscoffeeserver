@@ -100,7 +100,7 @@ app.get('/getalluser/', function (req, res) {
 });
 
 //update user role
-app.put('/updaterole/', function (req, res) {
+app.put('/updatepassword/', function (req, res) {
     var postData = req.body;
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Credentials", true);
@@ -115,7 +115,7 @@ app.put('/updaterole/', function (req, res) {
 
 
 //update user role
-app.put('/updatepassword/', function (req, res) {
+app.put('/updaterole/', function (req, res) {
     var postData = req.body;
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Credentials", true);
