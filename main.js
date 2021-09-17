@@ -270,7 +270,7 @@ app.post('/getuserorder/', function (req, res) {
  });
  
  
-  app.put('/deletedonhang/', function (req, res) {
+  app.post('/deletedonhang/', function (req, res) {
      var postData = req.body;
      res.header("Access-Control-Allow-Origin", "*");
      res.header("Access-Control-Allow-Credentials", true);
