@@ -114,6 +114,21 @@ app.put('/updatepassword/', function (req, res) {
 });
 
 
+//update xep loai nguoi dung
+app.put('/updatexeploainguoidung/', function (req, res) {
+    var postData = req.body;
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+
+    pool.query('UPDATE nguoidung SET xeploainguoidung=($1) where dienthoai=($2)', postData, function (error, results, fields) {
+        if (error) throw error;
+        res.end(JSON.stringify(results.rows));
+    });
+});
+
+
 //reset password
 app.put('/resetpassword/', function (req, res) {
     var postData = req.body;
@@ -180,6 +195,19 @@ app.post('/getorderhistory/', function (req, res) {
     res.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept,content-type,application/json");
     console.log(req);
     pool.query('select madonhang, thoigian, dienthoai, trangthaidonhang, ghichu from lichsudonhang where madonhang = $1', postData, function (error, results, fields) {
+        if (error) throw error;
+        res.end(JSON.stringify(results.rows));
+    });
+});
+
+app.post('/gettrongluongtungkhachhang/', function (req, res) {
+    var postData = req.body;
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept,content-type,application/json");
+    console.log(req);
+    pool.query('SELECT sum(cast(trongluong  AS INTEGER)) FROM public.donhang as tongtrongluong where sdtnguoigui = $1', postData, function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results.rows));
     });
