@@ -93,7 +93,7 @@ app.get('/getalluser/', function (req, res) {
     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
     res.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept,content-type,application/json");
     console.log(req);
-    pool.query('select dienthoai, hoten, quyenhan from nguoidung', function (error, results, fields) {
+    pool.query('select dienthoai, hoten, quyenhan, xeploaikhachhang from nguoidung', function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results.rows));
     });
