@@ -207,7 +207,7 @@ app.post('/gettrongluongtungkhachhang/', function (req, res) {
     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
     res.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept,content-type,application/json");
     console.log(req);
-    pool.query('SELECT sum(cast(trongluong  AS INTEGER)) FROM public.donhang as tongtrongluong where sdtnguoigui = $1', postData, function (error, results, fields) {
+    pool.query('SELECT sum(cast(trongluong  AS INTEGER)) FROM public.donhang as tongtrongluong where sdtnguoigui = $1 and madonhang <> $2', postData, function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results.rows));
     });
