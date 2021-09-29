@@ -99,6 +99,22 @@ app.get('/getalluser/', function (req, res) {
     });
 });
 
+
+//get all user
+app.post('/xeploainguoidung/', function (req, res) {
+    
+    var postData = req.body;
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+
+    pool.query('Select xeploaikhachhang from nguoidung where dienthoai=($1)', postData, function (error, results, fields) {
+        if (error) throw error;
+        res.end(JSON.stringify(results.rows));
+    });
+});
+
 //update user role
 app.put('/updatepassword/', function (req, res) {
     var postData = req.body;
